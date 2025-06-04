@@ -1,11 +1,13 @@
 # backend/main.py
 from fastapi import FastAPI
-from routers import file_upload
-from utils.db import engine
-from models.file_metadata import Base
+from app.routers import file_upload
+from app.utils.db import engine
+from app.models.file_metadata import Base
 
 app = FastAPI()
 
-# Include your routers
+# Create database tables
 Base.metadata.create_all(bind=engine)
+
+# Include your routers
 app.include_router(file_upload.router)
