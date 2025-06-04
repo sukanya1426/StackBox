@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 router = APIRouter()
 
 @router.post("/upload")
-async def upload_file(file: UploadFile = File(...), db: Session = Depends(get_db)):
+async def upload_file(file: UploadFile = File(...), db: Session = Depends (get_db)):
     contents = await file.read()
     size = len(contents)
     # Reset file pointer for upload_to_blob
@@ -19,6 +19,8 @@ async def upload_file(file: UploadFile = File(...), db: Session = Depends(get_db
         size=size,
         blob_url=blob_url
     )
+    print(metadata)
+    print("File uploaded to blob storage:", blob_url)
     db.add(metadata)
     db.commit()
     db.refresh(metadata)
