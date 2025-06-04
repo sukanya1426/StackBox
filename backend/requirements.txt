@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-multipart
+psycopg2-binary
+python-dotenv
+aiofiles
+sqlalchemy
+asyncpg
+azure-storage-blob
