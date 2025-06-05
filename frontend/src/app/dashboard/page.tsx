@@ -72,11 +72,11 @@ interface FileEntry {
 }
 
 // API URL
-const API_URL = "http://localhost:8000";
+// const API_URL = "http://localhost:8000";
 
 export default function Dashboard() {
   const [file, setFile] = useState<File | null>(null);
-  const [files, setFiles] = useState<FileEntry[]>([]);
+  const [files, setFiles] = useState<FileEntry[]>([]
   const [message, setMessage] = useState<{
     text: string;
     type: "success" | "error";
@@ -91,7 +91,7 @@ export default function Dashboard() {
   const fetchFiles = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_URL}/list-files`, { mode: "cors" });
+      const response = await fetch(`${(process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000")}/list-files`, { mode: "cors" });
       if (!response.ok) throw new Error("Failed to fetch files");
       const data = await response.json();
       setFiles(data);
@@ -121,7 +121,7 @@ export default function Dashboard() {
     formData.append("file", file);
 
     try {
-      const response = await fetch(`${API_URL}/upload`, {
+      const response = await fetch(`${(process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000")}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -140,7 +140,7 @@ export default function Dashboard() {
 
   const handleDownload = async (filename: string) => {
     try {
-      window.location.href = `${API_URL}/download/${filename}`;
+      window.location.href = `${(process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000")}/download/${filename}`;
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : String(error);
       setMessage({ text: "Download failed: " + errorMsg, type: "error" });
@@ -151,7 +151,7 @@ export default function Dashboard() {
     if (!confirm(`Are you sure you want to delete ${filename}?`)) return;
 
     try {
-      const response = await fetch(`${API_URL}/delete/${filename}`, {
+      const response = await fetch(`${(process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000")}/delete/${filename}`, {
         method: "DELETE",
       });
       const data = await response.json();

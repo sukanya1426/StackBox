@@ -16,11 +16,11 @@ async def download_file(filename: str, db: Session = Depends(get_db)):
     if not file_metadata:
         raise HTTPException(status_code=404, detail=f"File '{filename}' not found")
     
-    # Log the SAS URL for debugging
+  
     sas_url = file_metadata.blob_url
     print(f"Attempting to fetch file from SAS URL: {sas_url}")
     
-    # Fetch the file from the SAS URL
+  
     try:
         response = requests.get(sas_url, stream=True)
         response.raise_for_status()  # Raises an exception for 4xx/5xx status codes

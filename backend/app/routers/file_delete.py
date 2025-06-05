@@ -17,11 +17,11 @@ container_client = blob_service.get_container_client(container)
 
 @router.delete("/delete/{filename}")
 async def delete_file(filename: str, db: Session = Depends(get_db)):
-    # Query the database for the latest file with the matching filename
+  
     file_metadata = db.query(FileMetadata).filter(FileMetadata.filename == filename)\
                     .order_by(FileMetadata.uploaded_at.desc()).first()
     
-    # If no file is found, raise a 404 error
+  
     if not file_metadata:
         raise HTTPException(status_code=404, detail=f"File '{filename}' not found")
     
@@ -43,7 +43,7 @@ async def delete_file(filename: str, db: Session = Depends(get_db)):
     # Delete the blob from Azure Blob Storage
     blob_client = container_client.get_blob_client(blob_name)
     try:
-        # Check if blob exists before attempting to delete
+       
         if blob_client.exists():
             blob_client.delete_blob()
         else:
@@ -51,9 +51,9 @@ async def delete_file(filename: str, db: Session = Depends(get_db)):
     except Exception as e:
         # Log the error but continue to delete the metadata
         print(f"Error deleting blob: {str(e)}")
-        # Don't raise exception here, we'll still delete the metadata
+      
     
-    # Delete the file metadata from the database
+   
     db.delete(file_metadata)
     db.commit()
     
