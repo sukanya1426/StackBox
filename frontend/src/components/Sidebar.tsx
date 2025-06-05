@@ -16,11 +16,6 @@ export default function Sidebar() {
             </li>
             <li>
               <Link href="#" className="block py-2 px-4 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">
-                Settings
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="block py-2 px-4 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">
                 Profile
               </Link>
             </li>
