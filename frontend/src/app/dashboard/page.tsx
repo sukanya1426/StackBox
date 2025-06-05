@@ -76,7 +76,7 @@ interface FileEntry {
 
 export default function Dashboard() {
   const [file, setFile] = useState<File | null>(null);
-  const [files, setFiles] = useState<FileEntry[]>([]
+  const [files, setFiles] = useState<FileEntry[]>([]);
   const [message, setMessage] = useState<{
     text: string;
     type: "success" | "error";
