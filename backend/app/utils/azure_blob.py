@@ -29,4 +29,4 @@ def upload_to_blob(file):
     
     # Construct the SAS URL
     sas_url = f"{blob_client.url}?{sas_token}"
-    return sas_url
+    return blob_name, sas_url

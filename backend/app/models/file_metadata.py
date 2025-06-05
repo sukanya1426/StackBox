@@ -10,5 +10,6 @@ class FileMetadata(Base):
     filename = Column(String)
     content_type = Column(String)
     size = Column(Integer)
+    blob_name = Column(String)  # Store the blob name separately
     blob_url = Column(String)
     uploaded_at = Column(DateTime, default=datetime.utcnow)

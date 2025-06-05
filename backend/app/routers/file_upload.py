@@ -12,11 +12,12 @@ async def upload_file(file: UploadFile = File(...), db: Session = Depends(get_db
     size = len(contents)
     # Reset file pointer for upload_to_blob
     file.file.seek(0)
-    blob_url = upload_to_blob(file)
+    blob_name, blob_url = upload_to_blob(file)
     metadata = FileMetadata(
         filename=file.filename,
         content_type=file.content_type,
         size=size,
+        blob_name=blob_name,
         blob_url=blob_url
     )
     print(metadata)
