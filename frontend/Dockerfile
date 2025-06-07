@@ -1,14 +1,11 @@
-FROM node:20-alpine AS builder
+FROM node:20-alpine 
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN npm run build
-RUN npm run export
 
-# Stage 2: Serve with Nginx
-FROM nginx:alpine
-COPY --from=builder /app/out /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 3000
+
+# Change this line to use Next.js's built-in server instead of serve
+CMD ["npm", "start"]
