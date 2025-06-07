@@ -6,7 +6,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8001:8000"
+      - "8000:8000"
     environment:
       - DATABASE_URL=postgresql://postgres:sukanya@postgres:5432/stackbox
       - AZURE_STORAGE_CONN_STR=DefaultEndpointsProtocol=https;AccountName=stackbox;AccountKey=mkD+YsGFkRQIMz1Irm3qZGU96/ToAOqPlV3KxX/vIY2PcS7uzvO829IcEBvGBfir7dXn/+KKcMEJ+AStcc0wPg==;EndpointSuffix=core.windows.net
@@ -22,10 +22,10 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "3001:3000"
+      - "3000:3000"
     environment:
       - NEXT_PUBLIC_API_URL=http://backend:8000
-      # - NEXT_PUBLIC_API_URL=/api
+   
     depends_on:
       - backend
     restart: always
@@ -37,7 +37,7 @@ services:
       - POSTGRES_PASSWORD=sukanya
       - POSTGRES_DB=stackbox
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: always

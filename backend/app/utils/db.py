@@ -12,6 +12,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 def  get_db():
     db = SessionLocal()
     try:
+        print("Database connection established")
         yield db
        
     finally:
