@@ -8,14 +8,14 @@ This project allows users to upload, download, list, and delete files. File cont
 
 ##  Getting Started
 
-###1. Clone the Repository 
+## 1. Clone the Repository 
 
 ```bash
 git clone https://github.com/your-username/stackbox.git
 cd stackbox
 docker-compose up --build
 ```
-###2. Start Docker
+## 2. Start Docker
 ```bash
 docker-compose up --build
 ```
