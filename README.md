@@ -19,3 +19,12 @@ docker-compose up --build
 ```bash
 docker-compose up --build
 ```
+This command will:
+
+-  **Build** the frontend and backend images
+-  **Start** PostgreSQL and initialize the `stackbox` database
+-  **Launch** the FastAPI backend at [http://localhost:8000](http://localhost:8000)
+-  **Run** the Next.js frontend at [http://localhost:3000](http://localhost:3000)
+-  **Route traffic via Nginx**:
+  - `/` → Frontend  
+  - `/api/` → Backend
