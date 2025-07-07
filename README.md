@@ -13,24 +13,6 @@ A modern, full-stack file storage and management platform built with **Next.js**
 - **API Documentation**: FastAPI automatic API documentation
 - **File Metadata**: Track file size, type, upload date, and more
 
-## 🏗️ Architecture
-
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Next.js       │    │   FastAPI       │    │   PostgreSQL    │
-│   Frontend      │◄──►│   Backend       │◄──►│   Database      │
-│   (Port 3000)   │    │   (Port 8000)   │    │   (Port 5432)   │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                │
-                                ▼
-                       ┌─────────────────┐
-                       │ Azure Blob      │
-                       │ Storage         │
-                       └─────────────────┘
-```
-
-- **Nginx** - Reverse proxy (optional)
-
 ## 📋 Prerequisites
 
 - Docker and Docker Compose
@@ -78,12 +60,6 @@ docker-compose up -d
 # View logs
 docker-compose logs -f
 ```
-
-### 4. Access the Application
-
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:8000
-- **API Documentation**: http://localhost:8000/docs
 
 ## 🔧 Development Setup
 
@@ -141,13 +117,6 @@ GitHub Actions workflows included:
 - **Code Linting**: Automated code quality checks
 - **EC2 Deployment**: Deployment to AWS EC2 instances
 
-## 🛡️ Security Features
-
-- **CORS Configuration**: Secure cross-origin requests
-- **SAS Tokens**: Temporary access to Azure Blob Storage
-- **Input Validation**: File type and size restrictions
-- **SQL Injection Protection**: SQLAlchemy ORM protection
-
 ## 📱 Features in Detail
 
 ### File Upload
@@ -171,23 +140,4 @@ GitHub Actions workflows included:
 - Storage usage tracking
 - Cleanup utilities
 
-## 🚀 Deployment
 
-### Production Deployment
-
-1. **Environment Variables**: Set production environment variables
-2. **SSL Certificates**: Configure HTTPS with Let's Encrypt
-3. **Database**: Use managed PostgreSQL service
-4. **Monitoring**: Set up application monitoring
-5. **Backup**: Configure regular backups
-
-### Scaling Considerations
-
-- Load balancing with multiple backend instances
-- Database connection pooling
-- CDN for static assets
-- Horizontal scaling with Kubernetes
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
